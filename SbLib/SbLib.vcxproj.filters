@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SbLib">
+      <UniqueIdentifier>{ed4565fd-8883-4868-962d-9c8357c1668e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SbLib\SbUtil">
+      <UniqueIdentifier>{77cb94ec-f247-4b73-be5c-0bbec6724799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SbLib\SbUtil\Header">
+      <UniqueIdentifier>{92e910d8-e5c1-4adb-aa0a-2ef6f5b8ecbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SbLib\SbUtil\Source">
+      <UniqueIdentifier>{4cdb4b4f-0f34-4cde-89c5-2ee807b5efc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SbLib\SbCore">
+      <UniqueIdentifier>{d29aa957-b2b1-4944-93d5-5758344007d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SbLib\SbCore\Source">
+      <UniqueIdentifier>{8b29b87c-9461-4c23-b237-9fe059bc951e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SbLib\SbCore\Header">
+      <UniqueIdentifier>{96cb8988-08dd-4fa7-8116-de9cdf077f48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{f327f788-19e4-483e-9638-00fd30c76281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\Header">
+      <UniqueIdentifier>{91203865-5657-4ff7-9258-3d1eb335a144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\Source">
+      <UniqueIdentifier>{24ca3ee1-0412-4dc2-a1e5-bf7e42f44103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\Plotter">
+      <UniqueIdentifier>{d8fab23b-5538-42b8-a126-61572567a4aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\Util">
+      <UniqueIdentifier>{bca66a87-ebfe-47f0-ae33-3d80ddd545e4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SbLib\SbHeader.h">
+      <Filter>SbLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\sbstdafx.h">
+      <Filter>SbLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbUtil\SbLogManager.h">
+      <Filter>SbLib\SbUtil\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbCore\SbCore.h">
+      <Filter>SbLib\SbCore\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbCore\SbFont.h">
+      <Filter>SbLib\SbCore\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbCore\SbSpriteParam.h">
+      <Filter>SbLib\SbCore\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbCore\SbTex.h">
+      <Filter>SbLib\SbCore\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>User\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UserMain.h">
+      <Filter>User\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbUtil\SbMemoryManager.h">
+      <Filter>SbLib\SbUtil\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UserHeader.h">
+      <Filter>User\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SbLib\SbUtil\SbWindow.h">
+      <Filter>SbLib\SbUtil\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Goddess.h">
+      <Filter>User\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlotEngine.h">
+      <Filter>User\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlotterBase.h">
+      <Filter>User\Plotter</Filter>
+    </ClInclude>
+    <ClInclude Include="Plotter_v00_01.h">
+      <Filter>User\Plotter</Filter>
+    </ClInclude>
+    <ClInclude Include="PlotterHeader.h">
+      <Filter>User\Plotter</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtil.h">
+      <Filter>User\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Plotter_v00_02.h">
+      <Filter>User\Plotter</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>User\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SbLib\sbstdafx.cpp">
+      <Filter>SbLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbUtil\SbLogManager.cpp">
+      <Filter>SbLib\SbUtil\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbCore\SbCore.cpp">
+      <Filter>SbLib\SbCore\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbCore\SbFont.cpp">
+      <Filter>SbLib\SbCore\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbCore\SbSpriteParam.cpp">
+      <Filter>SbLib\SbCore\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbCore\SbTex.cpp">
+      <Filter>SbLib\SbCore\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>User\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="UserMain.cpp">
+      <Filter>User\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbUtil\SbMemoryManager.cpp">
+      <Filter>SbLib\SbUtil\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SbLib\SbUtil\SbWindow.cpp">
+      <Filter>SbLib\SbUtil\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Goddess.cpp">
+      <Filter>User\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlotEngine.cpp">
+      <Filter>User\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Plotter_v00_01.cpp">
+      <Filter>User\Plotter</Filter>
+    </ClCompile>
+    <ClCompile Include="PlotterBase.cpp">
+      <Filter>User\Plotter</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtil.cpp">
+      <Filter>User\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Plotter_v00_02.cpp">
+      <Filter>User\Plotter</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
