@@ -23,6 +23,9 @@ PlotterBase* PlotterBase::GetNewPlotter(int nMajor, int nMinor)
 	case 2:
 		pResult = new Plotter_v00_02();
 		break;
+	case 3:
+		pResult = new Plotter_v00_03();
+		break;
 	}
 
 	return pResult;
@@ -31,4 +34,9 @@ PlotterBase* PlotterBase::GetNewPlotter(int nMajor, int nMinor)
 void PlotterBase::PostOperate(LogicParam* pParam1, double* pdX, LogicParam* pParam2, double* pdY, LogicParam* pParam3, double* pdZ, int nFrame)
 {
 	//	V00_02‚©‚çŽÀ‘•
+}
+
+double PlotterBase::Calculate(char** ppAlgo, void* pInfo, int nDim)
+{
+	return Calculate(ppAlgo, pInfo);
 }

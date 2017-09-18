@@ -69,6 +69,7 @@ private:
 	virtual char* SetArg(char* pDest, void* pArgInfo) = 0;
 	virtual char* SetOp(char* pDest, void* pOpInfo) = 0;
 	virtual double Calculate(char** ppAlgo, void* pInfo) = 0;
+	virtual double Calculate(char** ppAlgo, void* pInfo, int nDim);
 };
 
 #endif

@@ -12,5 +12,6 @@
 #include "stdafx.h"
 #include "Plotter_v00_01.h"
 #include "Plotter_v00_02.h"
+#include "Plotter_v00_03.h"
 
 //#endif	//	_PLOTTER_HEADER_H_

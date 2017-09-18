@@ -103,6 +103,9 @@
     <ClInclude Include="config.h">
       <Filter>User\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Plotter_v00_03.h">
+      <Filter>User\Plotter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SbLib\sbstdafx.cpp">
@@ -151,6 +154,9 @@
       <Filter>User\Util</Filter>
     </ClCompile>
     <ClCompile Include="Plotter_v00_02.cpp">
+      <Filter>User\Plotter</Filter>
+    </ClCompile>
+    <ClCompile Include="Plotter_v00_03.cpp">
       <Filter>User\Plotter</Filter>
     </ClCompile>
   </ItemGroup>
