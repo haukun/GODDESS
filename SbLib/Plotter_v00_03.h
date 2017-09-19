@@ -2,7 +2,7 @@
 	@file		Plotter_v00_03.h
 	@brief		プロッタバージョン00_03
 	@author		Hau-kun
-	@date		2017/05/01
+	@date		2017/09/19
 	@version	0.1
 */
 
@@ -27,6 +27,10 @@ typedef struct GenParam_v00_03
 	double P;
 	double Q;
 	double R;
+	int nDiv;	//	形状回転数
+	int nLop;	//	ループ数
+	int nRot;	//	回転数
+
 }GenParam_v00_03;
 
 typedef struct ExpInfo_v00_03
@@ -68,6 +72,9 @@ public:
 	virtual double Operate(LogicParam* pParam);
 	virtual void PostOperate(LogicParam* pParam1, double* pdX, LogicParam* pParam2, double* pdY, LogicParam* pParam3, double* pdZ, int nFrame);
 
+	int GetDiv(void);
+	int GetLop(void);
+	int GetRot(void);
 
 private:
 	GenParam_v00_03 m_param;
@@ -78,7 +85,6 @@ private:
 	virtual	char* SetOp(char* pDest, void* pInfo);
 
 	virtual double Calculate(char** pAlgo, void* pInfo);
-	//virtual double Calculate(char** pAlgo, void* pInfo, int nDim = 0);
 
 };
 

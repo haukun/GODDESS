@@ -62,7 +62,6 @@ public:
 	virtual void SaveAlgo(const char* strFileName) = 0;
 	virtual double Operate(LogicParam* pParam) = 0;
 	virtual void PostOperate(LogicParam* pParam1, double* pdX, LogicParam* pParam2, double* pdY, LogicParam* pParam3, double* pdZ, int nFrame);
-
 private:
 	virtual char* SetExp(char* pDest, void* ExpInfo) = 0;
 	virtual char* SetParam(char* pDest, void* ParamInfo) = 0;

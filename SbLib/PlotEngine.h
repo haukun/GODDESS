@@ -35,8 +35,8 @@ public:
 	void PostExecute(LogicParam* pParam1, double* pdX, LogicParam* pParam2, double* pdY, LogicParam* pParam3, double* pdZ, int nFrame);
 
 	int GetSeedIndex(void);
-private:
 	PlotterBase* m_plotter;
+private:
 
 	int m_nSeedIndex;
 

@@ -2,7 +2,7 @@
 	@file		Plotter_v00_03.cpp
 	@brief		ÉvÉçÉbÉ^ v00.03
 	@author		Hau-kun
-	@date		2014/10/12
+	@date		2017/09/19
 	@version	1.0
 */
 
@@ -48,14 +48,13 @@ double Plotter_v00_03::Operate(LogicParam* pParam)
 	dResult = Calculate(pDestAdd, &calInfo);
 
 	return dResult;
-
 }
 void Plotter_v00_03::PostOperate(LogicParam* pParam1, double* pdX, LogicParam* pParam2, double* pdY, LogicParam* pParam3, double* pdZ, int nFrame)
 {
 	double rad = atan2(*pdY, *pdX);
 	double len = sqrt((*pdX * *pdX) + (*pdY * *pdY));
 
-	rad += (1 * 3.14159265 * (m_param.P));
+	rad += (2 * 3.14159265 * (m_param.P));
 	len *= m_param.Q;
 
 	*pdX = cos(rad) * len;
@@ -194,14 +193,16 @@ double Plotter_v00_03::Calculate(char** ppAlgo, void* pInfo)
 
 char* Plotter_v00_03::ConstructAlgo(void* AlgoInfo)
 {
-	m_param.A = (rand() / (double)RAND_MAX) * 40 - 20;
-	m_param.B = (rand() / (double)RAND_MAX) * 40 - 20;
-	m_param.C = (rand() / (double)RAND_MAX) * 40 - 20;
-	m_param.D = (rand() / (double)RAND_MAX) * 40 - 20;
+	m_param.A = (rand() / (double)RAND_MAX) * 10 - 5;
+	m_param.B = (rand() / (double)RAND_MAX) * 10 - 5;
+	m_param.C = (rand() / (double)RAND_MAX) * 10 - 5;
+	m_param.D = (rand() / (double)RAND_MAX) * 10 - 5;
 	m_param.P = (rand() / (double)RAND_MAX) * 100 - 50;
 	m_param.Q = (rand() / (double)RAND_MAX) * 4 - 2;
 	m_param.R = (rand() / (double)RAND_MAX) * 100 - 50;
-
+	m_param.nDiv = (int)((rand() / (double)RAND_MAX) * 12 + 1);
+	m_param.nLop = (int)((rand() / (double)RAND_MAX) * 6 + 1);
+	m_param.nRot = (int)((rand() / (double)RAND_MAX) * 12 + 1);
 
 
 	ExpInfo_v00_03 info1;
@@ -233,6 +234,7 @@ bool Plotter_v00_03::ReadAlgo(void* AlgoInfo, int nSeedIndex)
 		fscanf(fp, "%s", buff);	//	Major
 		fscanf(fp, "%s", buff);	//	Minor
 
+		int buffn;
 		double buffp;
 		fscanf(fp, "%lf", &buffp);
 		m_param.A = buffp;
@@ -255,6 +257,15 @@ bool Plotter_v00_03::ReadAlgo(void* AlgoInfo, int nSeedIndex)
 		fscanf(fp, "%lf", &buffp);
 		m_param.R = buffp;
 
+		fscanf(fp, "%d", &buffn);
+		m_param.nDiv = buffn;
+
+		fscanf(fp, "%d", &buffn);
+		m_param.nLop = buffn;
+
+		fscanf(fp, "%d", &buffn);
+		m_param.nRot = buffn;
+
 		fscanf(fp, "%s", buff);
 		strcpy(m_param.strArg1, buff);
 
@@ -276,182 +287,69 @@ char* Plotter_v00_03::SetExp(char* pDest, void* pInfo)
 	ExpInfo_v00_03 info = *(ExpInfo_v00_03*)pInfo;
 	memset(pDest, 0x00, 1024);
 
-	if(info.nDim <= 2)
+	strcat(pDest, "ADD");
+	if(MathUtil::Rand() > 0.0)
 	{
 		if(MathUtil::Rand() > 0.5)
 		{
-			strcat(pDest, "ADD");
-		}
-		else
-		{
-			strcat(pDest, "SUB");
-		}
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "ADD");
-		}
-		else
-		{
-			strcat(pDest, "SUB");
-		}
-
-		if(MathUtil::Rand() > 0.5)
-		{
 			strcat(pDest, "SIN");
 		}
 		else
 		{
 			strcat(pDest, "COS");
 		}
+	}
+	strcat(pDest, "MUL");
+	SetParam(pDest, NULL);
 
-		if(MathUtil::Rand() < 0.5)
-		{
-			strcat(pDest, "MUL");
-		}
-		else
-		{
-			strcat(pDest, "DIV");
-		}
-		SetParam(pDest, NULL);
-
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "POX");
-		}
-		else
-		{
-			strcat(pDest, "POY");
-		}
-
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "SIN");
-		}
-		else
-		{
-			strcat(pDest, "COS");
-		}
-
-		if(MathUtil::Rand() < 0.5)
-		{
-			strcat(pDest, "MUL");
-		}
-		else
-		{
-			strcat(pDest, "DIV");
-		}
-		SetParam(pDest, NULL);
-
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "POX");
-		}
-		else
-		{
-			strcat(pDest, "POY");
-		}
-
-
-		if(MathUtil::Rand() < 0.5)
-		{
-			strcat(pDest, "MUL");
-		}
-		else
-		{
-			strcat(pDest, "DIV");
-		}
-		strcat(pDest, "MUL");
-		SetParam(pDest, NULL);
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "COS");
-		}
-		else
-		{
-			strcat(pDest, "SIN");
-		}
-		strcat(pDest, "MUL");
-		SetParam(pDest, NULL);
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "POX");
-		}
-		else
-		{
-			strcat(pDest, "POY");
-		}
-
-			strcat(pDest, "PAQ");
-
+	if(info.nDim == 2)
+	{
+		strcat(pDest, "POX");
 	}
 	else
 	{
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "ADD");
-		}
-		else
-		{
-			strcat(pDest, "SUB");
-		}
+		strcat(pDest, "POY");
+	}
 
+	if(info.nDim == 1)
+	{
+		strcat(pDest, "DIV");
+	}
+	else if(info.nDim == 2)
+	{
+		strcat(pDest, "MUL");
+	}
+	strcat(pDest, "MUL");
+	SetParam(pDest, NULL);
+	if(MathUtil::Rand() > 0.0)
+	{
 		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "SIN");
-		}
-		else
 		{
 			strcat(pDest, "COS");
 		}
-
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "MUL");
-		}
 		else
-		{
-			strcat(pDest, "DIV");
-		}
-		SetParam(pDest, NULL);
-
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "POX");
-		}
-		else
-		{
-			strcat(pDest, "POY");
-		}
-
-				if(MathUtil::Rand() > 0.5)
 		{
 			strcat(pDest, "SIN");
 		}
-		else
-		{
-			strcat(pDest, "COS");
-		}
+	}
+	strcat(pDest, "MUL");
+	SetParam(pDest, NULL);
+	if(info.nDim == 1)
+	{
+		strcat(pDest, "POX");
+	}
+	else
+	{
+		strcat(pDest, "POY");
+	}
 
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "MUL");
-		}
-		else
-		{
-			strcat(pDest, "DIV");
-		}
-		SetParam(pDest, NULL);
-
-		if(MathUtil::Rand() > 0.5)
-		{
-			strcat(pDest, "POX");
-		}
-		else
-		{
-			strcat(pDest, "POY");
-		}
-
-
+	if(info.nDim == 1)
+	{
+		strcat(pDest, "POY");
+	}
+	else if(info.nDim == 2)
+	{
+		strcat(pDest, "POX");
 	}
 
 	return pDest;
@@ -578,9 +476,24 @@ void Plotter_v00_03::SaveAlgo(const char* strFileName)
 	FILE* fp;
 	if((fp = fopen(strFileName, "w")) != NULL)
 	{
-		fprintf(fp, "COCGEN\n0\n2\n%lf\n%lf\n%lf\n%lf\n%lf\n%lf\n%lf\n", m_param.A, m_param.B, m_param.C, m_param.D, m_param.P, m_param.Q, m_param.R);
+		fprintf(fp, "COCGEN\n0\n3\n%lf\n%lf\n%lf\n%lf\n%lf\n%lf\n%lf\n%d\n%d\n%d\n", m_param.A, m_param.B, m_param.C, m_param.D, m_param.P, m_param.Q, m_param.R, m_param.nDiv, m_param.nLop, m_param.nRot);
 		fprintf(fp, "%s\n%s\n%s\n", m_param.strArg1, m_param.strArg2, m_param.strArg3);
 		fclose(fp);
 	}
 
+}
+
+int Plotter_v00_03::GetDiv(void)
+{
+	return m_param.nDiv;
+}
+
+int Plotter_v00_03::GetLop(void)
+{
+	return m_param.nLop;
+}
+
+int Plotter_v00_03::GetRot(void)
+{
+	return m_param.nRot;
 }

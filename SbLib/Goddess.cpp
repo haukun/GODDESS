@@ -137,29 +137,81 @@ void Goddess::Plot(void)
 		dy = hHeight + (dy * pNowDisp->nRatio);
 		dz = dz * 100;//RATIO;	//	MEMO 100固定にしないと色相がずれる。
 
-
+		double alphaRepeatRatio = 1 / 1.0;
 		//	点が画面内にあれば描画
-		if(0 < dx && dx < pNowDisp->nWidth && 0 < dy && dy < pNowDisp->nHeight)
+
+		int nDiv = ((Plotter_v00_03*)m_plot.m_plotter)->GetDiv();
+		int nLop = ((Plotter_v00_03*)m_plot.m_plotter)->GetLop();
+		int nRot = ((Plotter_v00_03*)m_plot.m_plotter)->GetRot();
+
+		for(int l = 0; l < nRot; l++)
 		{
-			//	アルファの小数計算
-			double drawAlpha = PUT_ALPHA * (pNowDisp->nRatio / 100.0) * (pNowDisp->nRatio / 100.0);
-			double littleAlpha = drawAlpha - (int)drawAlpha;
-			fewAlpha[(int)dx][(int)dy] += littleAlpha;
+			double dlx = dx;
+			double dly = dy;
+			double dlz = dz;
 
-			//	アルファ小数部分が1を越えたら描画に適用
-			if(fewAlpha[(int)dx][(int)dy] >= 1)
+			double d2 = sqrt((dlx - hWidth) * (dlx - hWidth) + (dly - hHeight) * (dly - hHeight));
+			double r2 = atan2(dly - hHeight, dlx - hWidth);
+
+			r2 += (((360.0 / nRot) * l) / 180.0) * 3.141592;
+			dlx = cos(r2) * d2 + hWidth;
+			dly = sin(r2) * d2 + hHeight;
+
+			for(int j = 0; j < nLop; j++)
 			{
-				fewAlpha[(int)dx][(int)dy]--;
-				drawAlpha++;
-			}
+				alphaRepeatRatio = (1 - (j / (j + 1.0))) * (1.0 / (nDiv + nLop + nRot));
+				double ddtx = dlx;
+				double ddty = dly;
+				double ddtz = dlz;
 
-			//	描画
-			if(drawAlpha >= 0)
-			{
-				D3DCOLOR col = HsvToRgb(drawAlpha, dz, 1, 1);
-				//col = RgbToGray(2, col >> 16 & 0x00ff, col >> 8 & 0x00ff, col >> 0 & 0x00ff);
+				ddtx -= hWidth;
+				ddty -= hHeight;
 
-				m_pDotTex->Act(dx, dy, col);
+				ddtx *= (1 - 0.1 * j);
+				ddty *= (1 - 0.1 * j);
+
+				ddtx += hWidth;
+				ddty += hHeight;
+
+				ddtx += hWidth * (j / (j + 1.0));
+
+				for(int k = 0; k < nDiv; k++)
+				{
+					double dtx = ddtx;
+					double dty = ddty;
+					double dtz = ddtz;
+
+					double d = sqrt((dtx - hWidth) * (dtx - hWidth) + (dty - hHeight) * (dty - hHeight));
+					double r = atan2(dty - hHeight, dtx - hWidth);
+
+					r += (((360.0 / nDiv) * k) / 180.0) * 3.141592;
+					dtx = cos(r) * d + hWidth;
+					dty = sin(r) * d + hHeight;
+
+					if(0 < dtx && dtx < pNowDisp->nWidth && 0 < dty && dty < pNowDisp->nHeight)
+					{
+						//	アルファの小数計算
+						double drawAlpha = PUT_ALPHA * (pNowDisp->nRatio / 100.0) * (pNowDisp->nRatio / 100.0) * alphaRepeatRatio;
+						double littleAlpha = drawAlpha - (int)drawAlpha;
+						fewAlpha[(int)dtx][(int)dty] += littleAlpha;
+
+						//	アルファ小数部分が1を越えたら描画に適用
+						if(fewAlpha[(int)dtx][(int)dty] >= 1)
+						{
+							fewAlpha[(int)dtx][(int)dty]--;
+							drawAlpha++;
+						}
+
+						//	描画
+						if(drawAlpha >= 0)
+						{
+							D3DCOLOR col = HsvToRgb(drawAlpha, dtz, 1, 1);
+							//col = RgbToGray(2, col >> 16 & 0x00ff, col >> 8 & 0x00ff, col >> 0 & 0x00ff);
+
+							m_pDotTex->Act(dtx, dty, col);
+						}
+					}
+				}
 			}
 		}
 
